@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+<body>
+    <form action="{% url 'updates:send_message_to_everyone' %}" method="POST">
+        <label for="text">Message</label><br>
+        <textarea name="text" id="text" cols="50" rows="10">Example message...</textarea><br>
+        <input type="submit" value="send to everyone">
+    </form><br>
+        <table>
+            <tr>
+                <th>Chat ID</th>
+                <th>Username</th>
+                <th>First Name</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.chat_id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.first_name }}</td>
+                {%endfor%}
+            </tr>
+        </table>
+
+
+</body>
+</html>
